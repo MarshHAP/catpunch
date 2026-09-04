@@ -3562,3 +3562,21 @@ body {
   margin-top: 4px;
   color: rgba(255, 255, 255, 0.55);
 }
+
+/* Default buttons (cart drawer, cart page, contact form) use the red CTA colour */
+.button:not(.button--dark) {
+  background: var(--color-cta);
+  border-color: var(--color-cta);
+  color: #fff;
+}
+.button:not(.button--dark):hover {
+  background: #c9271f;
+  border-color: #c9271f;
+}
+.cart-drawer__savings,
+.cart__savings {
+  color: var(--color-cta);
+}
+.link {
+  color: var(--color-cta);
+}
