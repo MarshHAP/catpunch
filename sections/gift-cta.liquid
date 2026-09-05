@@ -1,0 +1,41 @@
+<section class="gift-cta sunburst">
+  <div class="page-width gift-cta__inner">
+    <div class="gift-cta__media">
+      {%- if section.settings.image != blank -%}
+        {{ section.settings.image | image_url: width: 700 | image_tag: loading: 'lazy', class: 'gift-cta__image' }}
+      {%- else -%}
+        <img class="gift-cta__image" src="{{ 'pdp-gift-box.webp' | asset_url }}" alt="{{ shop.name }} gift box" loading="lazy" width="700" height="700">
+      {%- endif -%}
+      {%- if section.settings.sticker != blank -%}
+        <div class="gift-cta__sticker display" aria-hidden="true"><span>{{ section.settings.sticker | escape }}</span></div>
+        <svg class="gift-cta__arrow" viewBox="0 0 80 60" aria-hidden="true">
+          <path d="M74 6 C60 40 40 50 8 48" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+          <path d="M18 40 L8 48 L20 54" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      {%- endif -%}
+    </div>
+    <div class="gift-cta__copy">
+      <h2 class="gift-cta__heading display">{{ section.settings.heading | escape }}</h2>
+      {%- if section.settings.button_label != blank -%}
+        <a href="{{ section.settings.button_link | default: '#featured-product' }}" class="button button--cta button--lg">
+          {{ section.settings.button_label | escape }}
+          {% render 'icon', name: 'arrow-right', class: 'button__arrow' %}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Gift call-to-action",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image", "info": "Falls back to the retail box photo." },
+    { "type": "text", "id": "sticker", "label": "Sticker text", "default": "The purrfect gift!" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "A small toy for a happier, healthier cat." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Shop now" },
+    { "type": "url", "id": "button_link", "label": "Button link" }
+  ],
+  "presets": [ { "name": "Gift call-to-action" } ]
+}
+{% endschema %}

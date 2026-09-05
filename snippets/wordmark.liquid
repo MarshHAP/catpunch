@@ -1,0 +1,6 @@
+{%- comment -%} Two-line comic wordmark. Params: size (px of line 1), class, paw (default true) {%- endcomment -%}
+{%- assign s = size | default: 32 -%}
+<span class="wordmark {{ class }}" style="--wm-size: {{ s }}px;" aria-label="{{ shop.name }}">
+  <span class="wordmark__top" aria-hidden="true">{{ settings.wordmark_top | default: 'CAT' }}{% unless paw == false %}{% render 'icon', name: 'paw', class: 'wordmark__paw' %}{% endunless %}</span>
+  <span class="wordmark__bottom" aria-hidden="true">{{ settings.wordmark_bottom | default: 'PUNCH' }}</span>
+</span>

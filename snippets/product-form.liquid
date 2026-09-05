@@ -1,0 +1,187 @@
+{%- comment -%}
+  Shared product buy box used by sections/featured-product and sections/main-product.
+  Params: product, section (for settings), section_id
+{%- endcomment -%}
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign form_id = 'ProductForm-' | append: section_id
+  assign atc_id = 'ProductSubmitButton-' | append: section_id
+-%}
+<div class="page-width">
+  <div class="product" data-product-section data-section-id="{{ section_id }}">
+    <div class="product__media-wrapper">
+      <div class="gallery-wrapper" data-gallery>
+        <div class="gallery">
+          <div class="gallery__viewport">
+            <div class="gallery__track" data-gallery-track>
+              {%- for media in product.media -%}
+                <div class="gallery__slide" data-gallery-slide data-media-id="{{ media.id }}" {% unless forloop.first %}aria-hidden="true"{% endunless %}>
+                  <div class="gallery__media">
+                    {%- liquid
+                      assign img_loading = 'lazy'
+                      if forloop.first
+                        assign img_loading = 'eager'
+                      endif
+                    -%}
+                    {%- if media.media_type == 'image' -%}
+                      {{ media | image_url: width: 1400 | image_tag: loading: img_loading, widths: '500, 800, 1100, 1400', sizes: '(min-width: 990px) 58vw, 100vw' }}
+                    {%- else -%}
+                      {{ media | media_tag: image_size: '1400x' }}
+                    {%- endif -%}
+                  </div>
+                </div>
+              {%- endfor -%}
+            </div>
+            {%- if product.media.size > 1 -%}
+              <button type="button" class="gallery__arrow gallery__arrow--prev" aria-label="{{ 'products.product.media.previous' | t }}" data-gallery-prev>{% render 'icon', name: 'arrow' %}</button>
+              <button type="button" class="gallery__arrow gallery__arrow--next" aria-label="{{ 'products.product.media.next' | t }}" data-gallery-next>{% render 'icon', name: 'arrow' %}</button>
+            {%- endif -%}
+          </div>
+          {%- if product.media.size > 1 -%}
+            <div class="gallery__dots" role="tablist">
+              {%- for media in product.media -%}
+                <button type="button" class="gallery__dot{% if forloop.first %} is-active{% endif %}" data-gallery-dot="{{ forloop.index0 }}" aria-label="{{ 'products.product.media.load_image' | t: index: forloop.index }}"></button>
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+        </div>
+        {%- if product.media.size > 1 -%}
+          <div class="thumbnails">
+            <button type="button" class="thumbnails__button thumbnails__button--prev" aria-label="{{ 'products.product.media.previous' | t }}" data-thumbs-prev>{% render 'icon', name: 'caret' %}</button>
+            <div class="thumbnails__viewport">
+              <div class="thumbnails__track" data-thumbs-track>
+                {%- for media in product.media -%}
+                  <button type="button" class="thumbnail{% if forloop.first %} is-active{% endif %}" data-gallery-thumb="{{ forloop.index0 }}" aria-label="{{ 'products.product.media.load_image' | t: index: forloop.index }}">
+                    {{ media | image_url: width: 240, height: 240, crop: 'center' | image_tag: loading: 'lazy', alt: '' }}
+                  </button>
+                {%- endfor -%}
+              </div>
+            </div>
+            <button type="button" class="thumbnails__button thumbnails__button--next" aria-label="{{ 'products.product.media.next' | t }}" data-thumbs-next>{% render 'icon', name: 'caret' %}</button>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="product__info-wrapper">
+      <div class="product__info">
+        <div class="product__title">
+          {%- if request.page_type == 'product' -%}
+            <h1 class="h1 product__heading">{{ product.title | escape }}</h1>
+          {%- else -%}
+            <h2 class="h1 product__heading"><a href="{{ product.url }}" class="product__heading-link">{{ product.title | escape }}</a></h2>
+          {%- endif -%}
+          {%- if section.settings.subtitle != blank %}<p class="product__subtitle">{{ section.settings.subtitle | escape }}</p>{% endif -%}
+        </div>
+
+        {%- if section.settings.rating > 0 -%}
+          <div class="rating-stars">
+            {% render 'stars', rating: section.settings.rating %}
+            {%- if section.settings.rating_label != blank %}<span class="rating-stars__label">{{ section.settings.rating_label | escape }}</span>{% endif -%}
+          </div>
+        {%- endif -%}
+
+        <div class="price" data-price-wrapper>
+          <span class="price__sale" data-price>{{ current_variant.price | money }}</span>
+          <s class="price__compare" data-compare-price {% unless current_variant.compare_at_price > current_variant.price %}hidden{% endunless %}>{{ current_variant.compare_at_price | money }}</s>
+          <span class="badge" data-save-badge {% unless current_variant.compare_at_price > current_variant.price %}hidden{% endunless %}>
+            {{ 'products.product.save' | t }} <span data-save-amount>{{ current_variant.compare_at_price | minus: current_variant.price | money_without_trailing_zeros }}</span>
+          </span>
+        </div>
+
+        {%- capture benefits -%}
+          {%- for i in (1..5) -%}
+            {%- assign key = 'benefit_' | append: i -%}
+            {%- if section.settings[key] != blank -%}
+              <li>{% render 'icon', name: 'check', class: 'check-benefits__icon' %}<span>{{ section.settings[key] | escape }}</span></li>
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endcapture -%}
+        {%- if benefits != blank %}<ul class="check-benefits list-unstyled" role="list">{{ benefits }}</ul>{% endif -%}
+
+        {%- form 'product', product, id: form_id, class: 'product-form', novalidate: 'novalidate', data-product-form: '' -%}
+          <input type="hidden" name="id" value="{{ current_variant.id }}" data-variant-id>
+
+          {%- if product.variants.size > 1 -%}
+            <div class="bundle-cards">
+              {%- if section.settings.bundle_title != blank %}<div class="bundle-cards__title">{{ section.settings.bundle_title | escape }}</div>{% endif -%}
+              <div class="bundle-cards__grid" role="radiogroup" aria-label="{{ section.settings.bundle_title | default: product.options.first | escape }}">
+                {%- for variant in product.variants -%}
+                  {%- liquid
+                    assign save_pct = 0
+                    if variant.compare_at_price > variant.price
+                      assign save_pct = variant.compare_at_price | minus: variant.price | times: 100.0 | divided_by: variant.compare_at_price | round
+                    endif
+                  -%}
+                  <label class="bundle-card{% if variant.id == current_variant.id %} is-selected{% endif %}{% unless variant.available %} is-unavailable{% endunless %}" data-bundle-card>
+                    <input class="visually-hidden" type="radio" name="bundle-{{ section_id }}" value="{{ variant.id }}" {% if variant.id == current_variant.id %}checked{% endif %}
+                      data-variant-radio data-price="{{ variant.price }}" data-compare="{{ variant.compare_at_price | default: 0 }}" data-available="{{ variant.available }}" data-media-id="{{ variant.featured_media.id }}">
+                    <span class="bundle-card__radio" aria-hidden="true"></span>
+                    <span class="bundle-card__body">
+                      <span class="bundle-card__title">{{ variant.title | escape }}</span>
+                      {%- if save_pct > 0 %}<span class="bundle-card__save">{{ 'products.product.save' | t }} {{ save_pct }}%</span>{% endif -%}
+                      <span class="bundle-card__pricing">
+                        <span class="bundle-card__price">{{ variant.price | money }}</span>
+                        {%- if variant.compare_at_price > variant.price %}<s class="bundle-card__compare">{{ variant.compare_at_price | money }}</s>{% endif -%}
+                      </span>
+                    </span>
+                  </label>
+                {%- endfor -%}
+              </div>
+            </div>
+          {%- endif -%}
+
+          <div class="product-form__buttons product-form__buttons--row">
+            <div class="quantity" role="group" aria-label="{{ 'products.product.quantity' | t }}">
+              <button type="button" class="quantity__button" data-qty-minus aria-label="Decrease quantity">&minus;</button>
+              <input class="quantity__input" type="number" name="quantity" value="1" min="1" inputmode="numeric" aria-label="{{ 'products.product.quantity' | t }}" data-qty-input>
+              <button type="button" class="quantity__button" data-qty-plus aria-label="Increase quantity">+</button>
+            </div>
+            <button id="{{ atc_id }}" type="submit" class="button button--cta button--uppercase product-form__submit" data-add-to-cart {% unless current_variant.available %}disabled{% endunless %}>
+              <span data-atc-text>{%- if current_variant.available -%}{{ 'products.product.add_to_cart' | t }}{%- else -%}{{ 'products.product.sold_out' | t }}{%- endif -%}</span>
+              {% render 'icon', name: 'arrow-right', class: 'button__arrow' %}
+            </button>
+          </div>
+          <div class="product-form__error" data-form-error role="alert" hidden></div>
+        {%- endform -%}
+
+        {%- capture trust -%}
+          {%- for i in (1..3) -%}
+            {%- assign tkey = 'trust_' | append: i | append: '_title' -%}
+            {%- assign ikey = 'trust_' | append: i | append: '_icon' -%}
+            {%- assign xkey = 'trust_' | append: i | append: '_text' -%}
+            {%- if section.settings[tkey] != blank -%}
+              <li class="icon-row__item">
+                <span class="icon-row__icon">{% render 'icon', name: section.settings[ikey] %}</span>
+                <span class="icon-row__text">
+                  <span class="icon-row__title">{{ section.settings[tkey] | escape }}</span>
+                  {%- if section.settings[xkey] != blank %}<span class="icon-row__sub">{{ section.settings[xkey] | escape }}</span>{% endif -%}
+                </span>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endcapture -%}
+        {%- if trust != blank %}<ul class="icon-row icon-row--compact product__trust-row list-unstyled" role="list">{{ trust }}</ul>{% endif -%}
+
+        {%- if section.settings.show_description and product.description != blank -%}
+          <details class="product__description faq__item">
+            <summary class="faq__question">{{ 'products.product.view_details' | t }}{% render 'icon', name: 'caret', class: 'faq__caret' %}</summary>
+            <div class="rte">{{ product.description }}</div>
+          </details>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sticky-atc" data-sticky-atc data-target="{{ atc_id }}" aria-hidden="true">
+  <div class="sticky-atc__inner">
+    <div class="sticky-atc__product">
+      {%- if product.featured_media -%}
+        {{ product.featured_media | image_url: width: 96, height: 96, crop: 'center' | image_tag: class: 'sticky-atc__image', alt: '' }}
+      {%- endif -%}
+      <span class="sticky-atc__title">{{ product.title | escape }}</span>
+    </div>
+    <button type="button" class="sticky-atc__button" data-sticky-add tabindex="-1">{{ 'products.product.add_to_cart' | t }}</button>
+  </div>
+</div>

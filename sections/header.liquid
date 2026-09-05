@@ -1,0 +1,107 @@
+<header-drawer-root></header-drawer-root>
+<div class="header-wrapper" id="HeaderWrapper">
+  <header class="header page-width-full">
+    <button type="button" class="header__icon header__icon--menu" aria-label="{{ 'general.menu' | t }}" aria-controls="MenuDrawer" aria-expanded="false" data-open="MenuDrawer">
+      {% render 'icon', name: 'hamburger' %}
+    </button>
+
+    {%- capture heading_link -%}
+      <a href="{{ routes.root_url }}" class="header__heading-link" aria-label="{{ shop.name }}">
+        {% render 'wordmark', size: 22, class: 'header__wordmark' %}
+      </a>
+    {%- endcapture -%}
+    {%- if request.page_type == 'index' -%}
+      <h1 class="header__heading">{{ heading_link }}</h1>
+    {%- else -%}
+      <div class="header__heading">{{ heading_link }}</div>
+    {%- endif -%}
+
+    <nav class="header__inline-menu" aria-label="Primary">
+      <ul class="list-unstyled header__menu" role="list">
+        {%- if section.blocks.size > 0 -%}
+          {%- for block in section.blocks -%}
+            <li {{ block.shopify_attributes }}>
+              <a href="{{ block.settings.url }}" class="header__menu-item{% if block.settings.url == request.path and request.path != '/' or block.settings.url == '/' and request.page_type == 'index' %} is-active{% endif %}"><span>{{ block.settings.label | escape }}</span></a>
+            </li>
+          {%- endfor -%}
+        {%- else -%}
+          {%- for link in section.settings.menu.links -%}
+            <li><a href="{{ link.url }}" class="header__menu-item{% if link.current %} is-active{% endif %}"><span>{{ link.title | escape }}</span></a></li>
+          {%- endfor -%}
+        {%- endif -%}
+      </ul>
+    </nav>
+
+    <div class="header__icons">
+      <button type="button" class="header__icon header__icon--search" aria-label="{{ 'general.search.search' | t }}" aria-controls="SearchModal" aria-expanded="false" data-open="SearchModal">
+        {% render 'icon', name: 'search' %}
+      </button>
+      {%- if shop.customer_accounts_enabled -%}
+        <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="header__icon header__icon--account" aria-label="{{ 'general.account' | t }}">
+          {% render 'icon', name: 'account' %}
+        </a>
+      {%- endif -%}
+      <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart" aria-label="{{ 'general.cart' | t }}" data-open="CartDrawer" id="CartIconBubble">
+        {% render 'icon', name: 'cart' %}
+        <span class="cart-count-bubble{% if cart.item_count == 0 %} is-empty{% endif %}" data-cart-count>{{ cart.item_count }}</span>
+      </a>
+    </div>
+  </header>
+</div>
+
+<div class="drawer drawer--left" id="MenuDrawer" aria-hidden="true">
+  <div class="drawer__overlay" data-close></div>
+  <div class="drawer__panel" role="dialog" aria-modal="true" aria-label="{{ 'general.menu' | t }}">
+    <div class="drawer__header">
+      {% render 'wordmark', size: 20 %}
+      <button type="button" class="drawer__close" aria-label="{{ 'general.close' | t }}" data-close>{% render 'icon', name: 'close' %}</button>
+    </div>
+    <ul class="menu-drawer__list list-unstyled" role="list">
+      {%- if section.blocks.size > 0 -%}
+        {%- for block in section.blocks -%}
+          <li><a href="{{ block.settings.url }}" class="menu-drawer__item">{{ block.settings.label | escape }}</a></li>
+        {%- endfor -%}
+      {%- else -%}
+        {%- for link in section.settings.menu.links -%}
+          <li><a href="{{ link.url }}" class="menu-drawer__item">{{ link.title | escape }}</a></li>
+        {%- endfor -%}
+      {%- endif -%}
+      {%- if shop.customer_accounts_enabled -%}
+        <li><a href="{{ routes.account_login_url }}" class="menu-drawer__item menu-drawer__item--muted">{{ 'general.account' | t }}</a></li>
+      {%- endif -%}
+    </ul>
+  </div>
+</div>
+
+<div class="modal" id="SearchModal" aria-hidden="true">
+  <div class="modal__overlay" data-close></div>
+  <div class="modal__panel" role="dialog" aria-modal="true" aria-label="{{ 'general.search.search' | t }}">
+    <form action="{{ routes.search_url }}" method="get" role="search" class="search-form">
+      <input class="search-form__input" type="search" name="q" placeholder="{{ 'general.search.placeholder' | t }}" aria-label="{{ 'general.search.search' | t }}" autocomplete="off">
+      <input type="hidden" name="options[prefix]" value="last">
+      <button type="submit" class="search-form__submit" aria-label="{{ 'general.search.search' | t }}">{% render 'icon', name: 'search' %}</button>
+      <button type="button" class="search-form__close" aria-label="{{ 'general.close' | t }}" data-close>{% render 'icon', name: 'close' %}</button>
+    </form>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Header",
+  "class": "section-header",
+  "settings": [
+    { "type": "link_list", "id": "menu", "label": "Fallback menu (used when no link blocks are added)", "default": "main-menu" }
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "Link",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Home" },
+        { "type": "url", "id": "url", "label": "Link", "default": "/" }
+      ]
+    }
+  ],
+  "max_blocks": 6
+}
+{% endschema %}

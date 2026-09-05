@@ -1,0 +1,10 @@
+<article class="section page-width page--narrow">
+  <h1 class="h1 section-title">{{ article.title | escape }}</h1>
+  <p class="article-card__meta">{{ article.published_at | date: '%d %B %Y' }} {{ 'blogs.article.written_by' | t: author: article.author }}</p>
+  {%- if article.image -%}{{ article.image | image_url: width: 1200 | image_tag: loading: 'lazy', class: 'article__image' }}{%- endif -%}
+  <div class="rte">{{ article.content }}</div>
+  <p><a href="{{ blog.url }}" class="link">{{ 'blogs.article.back_to_blog' | t }}</a></p>
+</article>
+{% schema %}
+{ "name": "Article", "settings": [] }
+{% endschema %}

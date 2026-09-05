@@ -1,0 +1,39 @@
+<section class="section cart-page page-width">
+  <h1 class="h1 section-title">{{ 'cart.title' | t }}</h1>
+  {%- if cart.item_count == 0 -%}
+    <p class="h3">{{ 'cart.empty' | t }}</p>
+    <a href="{{ routes.root_url }}" class="button">{{ 'general.continue_shopping' | t }}</a>
+  {%- else -%}
+    <form action="{{ routes.cart_url }}" method="post" class="cart-page__form">
+      <div class="cart-page__items">
+        {%- for item in cart.items -%}
+          <div class="cart-item">
+            <a href="{{ item.url }}" class="cart-item__media">{%- if item.image -%}{{ item.image | image_url: width: 160, height: 160, crop: 'center' | image_tag: loading: 'lazy', alt: '' }}{%- endif -%}</a>
+            <div class="cart-item__details">
+              <a href="{{ item.url }}" class="cart-item__title">{{ item.product.title | escape }}</a>
+              {%- if item.product.has_only_default_variant == false %}<p class="cart-item__variant">{{ item.variant.title | escape }}</p>{% endif -%}
+              <div class="cart-item__price"><span class="cart-item__final">{{ item.final_line_price | money }}</span></div>
+              <div class="cart-item__actions">
+                <div class="quantity quantity--small">
+                  <input class="quantity__input" type="number" name="updates[]" min="0" value="{{ item.quantity }}" aria-label="{{ 'products.product.quantity' | t }}">
+                </div>
+                <a href="{{ item.url_to_remove }}" class="cart-item__remove" aria-label="{{ 'cart.remove' | t }}">{% render 'icon', name: 'remove' %}</a>
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+      <div class="cart-page__footer">
+        <div class="cart-drawer__subtotal"><span>{{ 'cart.subtotal' | t }}</span><span>{{ cart.total_price | money }}</span></div>
+        <p class="cart-drawer__note">{{ 'cart.taxes_and_shipping' | t }}</p>
+        <div class="cart-page__buttons">
+          <button type="submit" name="update" class="button button--dark">Update</button>
+          <button type="submit" name="checkout" class="button button--cta">{{ 'cart.checkout' | t }}</button>
+        </div>
+      </div>
+    </form>
+  {%- endif -%}
+</section>
+{% schema %}
+{ "name": "Cart", "settings": [] }
+{% endschema %}

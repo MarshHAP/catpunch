@@ -1,0 +1,32 @@
+<section class="section product-section" id="featured-product">
+  {% render 'product-form', product: product, section: section, section_id: section.id %}
+</section>
+
+{% schema %}
+{
+  "name": "Product",
+  "settings": [
+    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Interactive Cat Boxing Bag" },
+    { "type": "range", "id": "rating", "min": 0, "max": 5, "step": 0.5, "label": "Star rating", "default": 5 },
+    { "type": "text", "id": "rating_label", "label": "Rating label", "default": "(1,247 reviews)" },
+    { "type": "text", "id": "bundle_title", "label": "Bundle title", "default": "Choose Your Bundle:" },
+    { "type": "header", "content": "Benefits" },
+    { "type": "text", "id": "benefit_1", "label": "Benefit 1", "default": "Keeps cats active and healthy" },
+    { "type": "text", "id": "benefit_2", "label": "Benefit 2", "default": "Strong suction cup base" },
+    { "type": "text", "id": "benefit_3", "label": "Benefit 3", "default": "Self-rebound action for endless fun" },
+    { "type": "text", "id": "benefit_4", "label": "Benefit 4", "default": "Scratch & bite resistant" },
+    { "type": "text", "id": "benefit_5", "label": "Benefit 5", "default": "No batteries needed" },
+    { "type": "header", "content": "Trust row" },
+    { "type": "select", "id": "trust_1_icon", "label": "Icon 1", "default": "truck", "options": [ { "value": "paw", "label": "Paw" }, { "value": "bolt", "label": "Bolt" }, { "value": "heart", "label": "Heart" }, { "value": "truck", "label": "Truck" }, { "value": "shield", "label": "Shield" }, { "value": "lock", "label": "Lock" }, { "value": "brain", "label": "Brain" }, { "value": "home", "label": "Home" }, { "value": "cat", "label": "Cat" }, { "value": "check", "label": "Check" } ] },
+    { "type": "text", "id": "trust_1_title", "label": "Title 1", "default": "Fast & free shipping" },
+    { "type": "text", "id": "trust_1_text", "label": "Text 1", "default": "On all orders" },
+    { "type": "select", "id": "trust_2_icon", "label": "Icon 2", "default": "shield", "options": [ { "value": "paw", "label": "Paw" }, { "value": "bolt", "label": "Bolt" }, { "value": "heart", "label": "Heart" }, { "value": "truck", "label": "Truck" }, { "value": "shield", "label": "Shield" }, { "value": "lock", "label": "Lock" }, { "value": "brain", "label": "Brain" }, { "value": "home", "label": "Home" }, { "value": "cat", "label": "Cat" }, { "value": "check", "label": "Check" } ] },
+    { "type": "text", "id": "trust_2_title", "label": "Title 2", "default": "30 day returns" },
+    { "type": "text", "id": "trust_2_text", "label": "Text 2", "default": "Hassle free" },
+    { "type": "select", "id": "trust_3_icon", "label": "Icon 3", "default": "lock", "options": [ { "value": "paw", "label": "Paw" }, { "value": "bolt", "label": "Bolt" }, { "value": "heart", "label": "Heart" }, { "value": "truck", "label": "Truck" }, { "value": "shield", "label": "Shield" }, { "value": "lock", "label": "Lock" }, { "value": "brain", "label": "Brain" }, { "value": "home", "label": "Home" }, { "value": "cat", "label": "Cat" }, { "value": "check", "label": "Check" } ] },
+    { "type": "text", "id": "trust_3_title", "label": "Title 3", "default": "Secure checkout" },
+    { "type": "text", "id": "trust_3_text", "label": "Text 3", "default": "256-bit SSL encrypted" },
+    { "type": "checkbox", "id": "show_description", "label": "Show product description accordion", "default": true }
+  ]
+}
+{% endschema %}

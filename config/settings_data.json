@@ -1,0 +1,19 @@
+{
+  "current": {
+    "color_accent": "#FFD21E",
+    "color_accent_deep": "#F7A11A",
+    "color_cta": "#E3342F",
+    "color_text": "#151515",
+    "color_background": "#FFFFFF",
+    "color_background_alt": "#FFF6D6",
+    "color_cream": "#FFFBEA",
+    "color_dark": "#111111",
+    "color_star": "#FFC400",
+    "page_width": 1400,
+    "wordmark_top": "CAT",
+    "wordmark_bottom": "PUNCH",
+    "cart_drawer": true,
+    "cart_reserve_minutes": 10,
+    "show_payment_icons": true
+  }
+}

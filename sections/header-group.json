@@ -1,0 +1,18 @@
+{
+  "name": "Header",
+  "type": "header",
+  "sections": {
+    "header": {
+      "type": "header",
+      "settings": {},
+      "blocks": {
+        "l1": { "type": "link", "settings": { "label": "Home", "url": "/" } },
+        "l2": { "type": "link", "settings": { "label": "Shop", "url": "/#featured-product" } },
+        "l3": { "type": "link", "settings": { "label": "About", "url": "/#about" } },
+        "l4": { "type": "link", "settings": { "label": "Reviews", "url": "/#reviews" } }
+      },
+      "block_order": ["l1", "l2", "l3", "l4"]
+    }
+  },
+  "order": ["header"]
+}

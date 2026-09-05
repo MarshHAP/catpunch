@@ -1,0 +1,14 @@
+<section class="section collection page-width">
+  <h1 class="h1 section-title">Collections</h1>
+  <ul class="product-grid list-unstyled" role="list">
+    {%- for collection in collections -%}
+      <li class="product-card">
+        <a href="{{ collection.url }}" class="product-card__media">{%- if collection.featured_image -%}{{ collection.featured_image | image_url: width: 600, height: 600, crop: 'center' | image_tag: loading: 'lazy', alt: '' }}{%- endif -%}</a>
+        <div class="product-card__info"><h3 class="h4"><a href="{{ collection.url }}">{{ collection.title | escape }}</a></h3></div>
+      </li>
+    {%- endfor -%}
+  </ul>
+</section>
+{% schema %}
+{ "name": "Collections list", "settings": [] }
+{% endschema %}

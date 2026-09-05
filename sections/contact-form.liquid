@@ -1,0 +1,19 @@
+<section class="section contact page-width page--narrow">
+  {%- form 'contact', id: 'ContactForm', class: 'contact-form' -%}
+    {%- if form.posted_successfully? -%}
+      <p class="form__message form__message--success" role="status">{{ 'sections.contact.success' | t }}</p>
+    {%- elsif form.errors -%}
+      <p class="form__message form__message--error" role="alert">{{ 'sections.contact.error' | t }}</p>
+    {%- endif -%}
+    <div class="field-row">
+      <label class="field"><span>{{ 'sections.contact.name' | t }}</span><input type="text" name="contact[name]" value="{{ form.name }}" autocomplete="name"></label>
+      <label class="field"><span>{{ 'sections.contact.email' | t }} *</span><input type="email" name="contact[email]" value="{{ form.email }}" autocomplete="email" required></label>
+    </div>
+    <label class="field"><span>{{ 'sections.contact.phone' | t }}</span><input type="tel" name="contact[phone]" value="{{ form.phone }}" autocomplete="tel"></label>
+    <label class="field"><span>{{ 'sections.contact.comment' | t }}</span><textarea name="contact[body]" rows="6">{{ form.body }}</textarea></label>
+    <button type="submit" class="button button--cta">{{ 'sections.contact.send' | t }}</button>
+  {%- endform -%}
+</section>
+{% schema %}
+{ "name": "Contact form", "settings": [], "presets": [ { "name": "Contact form" } ] }
+{% endschema %}

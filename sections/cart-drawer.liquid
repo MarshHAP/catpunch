@@ -1,0 +1,87 @@
+<div class="drawer drawer--right cart-drawer" id="CartDrawer" aria-hidden="true">
+  <div class="drawer__overlay" data-close></div>
+  <div class="drawer__panel" role="dialog" aria-modal="true" aria-label="{{ 'cart.title' | t }}">
+    <div class="drawer__header cart-drawer__header">
+      <h2 class="cart-drawer__heading h3">{{ 'cart.title' | t }} &bull; <span data-cart-count>{{ cart.item_count }}</span> {{ 'cart.items' | t }}</h2>
+      <button type="button" class="drawer__close" aria-label="{{ 'general.close' | t }}" data-close>{% render 'icon', name: 'close' %}</button>
+    </div>
+
+    {%- if cart.item_count == 0 -%}
+      <div class="cart-drawer__empty">
+        <p class="cart__empty-text h3">{{ 'cart.empty' | t }}</p>
+        <button type="button" class="button" data-close>{{ 'general.continue_shopping' | t }}</button>
+        {%- if shop.customer_accounts_enabled and customer == nil -%}
+          <p class="cart__login-title h4">{{ 'cart.login.title' | t }}</p>
+          <p class="cart__login-paragraph">{{ 'cart.login.paragraph_html' | t: link: routes.account_login_url }}</p>
+        {%- endif -%}
+      </div>
+    {%- else -%}
+      {%- if settings.cart_reserve_minutes > 0 -%}
+        <div class="cart-drawer__reserve" data-cart-timer data-minutes="{{ settings.cart_reserve_minutes }}">{%- capture timer_html -%}<span data-cart-timer-value>--:--</span>{%- endcapture -%}{{ 'cart.reserved' | t: time: timer_html }}</div>
+      {%- endif -%}
+      <div class="cart-drawer__items">
+        {%- for item in cart.items -%}
+          <div class="cart-item" data-line="{{ forloop.index }}">
+            <a href="{{ item.url }}" class="cart-item__media">
+              {%- if item.image -%}{{ item.image | image_url: width: 160, height: 160, crop: 'center' | image_tag: loading: 'lazy', alt: '' }}{%- endif -%}
+            </a>
+            <div class="cart-item__details">
+              <a href="{{ item.url }}" class="cart-item__title">{{ item.product.title | escape }}</a>
+              {%- if item.product.has_only_default_variant == false %}<p class="cart-item__variant">{{ item.variant.title | escape }}</p>{% endif -%}
+              <div class="cart-item__price">
+                <span class="cart-item__final">{{ item.final_line_price | money }}</span>
+                {%- if item.variant.compare_at_price > item.variant.price -%}
+                  <s class="cart-item__compare">{{ item.variant.compare_at_price | times: item.quantity | money }}</s>
+                {%- endif -%}
+              </div>
+              <div class="cart-item__actions">
+                <div class="quantity quantity--small">
+                  <button type="button" class="quantity__button" data-cart-change="{{ item.key }}" data-qty="{{ item.quantity | minus: 1 }}" aria-label="Decrease quantity">&minus;</button>
+                  <input class="quantity__input" type="number" min="0" value="{{ item.quantity }}" aria-label="{{ 'products.product.quantity' | t }}" data-cart-qty="{{ item.key }}">
+                  <button type="button" class="quantity__button" data-cart-change="{{ item.key }}" data-qty="{{ item.quantity | plus: 1 }}" aria-label="Increase quantity">+</button>
+                </div>
+                <button type="button" class="cart-item__remove" data-cart-change="{{ item.key }}" data-qty="0" aria-label="{{ 'cart.remove' | t }}">{% render 'icon', name: 'remove' %}</button>
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+      <div class="cart-drawer__footer">
+        {%- assign compare_total = 0 -%}
+        {%- for item in cart.items -%}
+          {%- if item.variant.compare_at_price > item.variant.price -%}
+            {%- assign line_compare = item.variant.compare_at_price | times: item.quantity -%}
+          {%- else -%}
+            {%- assign line_compare = item.original_line_price -%}
+          {%- endif -%}
+          {%- assign compare_total = compare_total | plus: line_compare -%}
+        {%- endfor -%}
+        <div class="cart-drawer__subtotal">
+          <span>{{ 'cart.subtotal' | t }}</span>
+          <span>{{ cart.total_price | money }}</span>
+        </div>
+        {%- if compare_total > cart.total_price -%}
+          <p class="cart-drawer__savings">{{ 'cart.saving' | t: amount: compare_total | minus: cart.total_price | money }}</p>
+        {%- endif -%}
+        <p class="cart-drawer__note">{{ 'cart.taxes_and_shipping' | t }}</p>
+        <form action="{{ routes.cart_url }}" method="post">
+          <button type="submit" name="checkout" class="button button--cta button--full-width button--lg">{{ 'cart.checkout' | t }}</button>
+        </form>
+        {%- if settings.show_payment_icons and shop.enabled_payment_types.size > 0 -%}
+          <ul class="payment-badges list-unstyled cart-drawer__payments" role="list">
+            {%- for type in shop.enabled_payment_types -%}
+              <li class="payment-badges__item">{{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}</li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Cart drawer",
+  "settings": []
+}
+{% endschema %}

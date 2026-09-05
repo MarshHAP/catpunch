@@ -1,0 +1,50 @@
+<footer class="footer">
+  <div class="page-width footer__inner">
+    <a href="{{ routes.root_url }}" class="footer__brand" aria-label="{{ shop.name }}">
+      {% render 'wordmark', size: 26, paw: false %}
+    </a>
+    {%- if section.settings.tagline != blank -%}
+      <p class="footer__tagline">{{ section.settings.tagline | escape }}</p>
+    {%- endif -%}
+    {%- if section.settings.menu.links.size > 0 -%}
+      <nav aria-label="Footer">
+        <ul class="footer__nav list-unstyled" role="list">
+          {%- for link in section.settings.menu.links -%}
+            <li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
+          {%- endfor -%}
+        </ul>
+      </nav>
+    {%- endif -%}
+    {%- if settings.show_payment_icons and shop.enabled_payment_types.size > 0 -%}
+      <div class="footer__payment">
+        <span class="visually-hidden">{{ 'sections.footer.payment' | t }}</span>
+        <ul class="payment-badges list-unstyled" role="list">
+          {%- for type in shop.enabled_payment_types -%}
+            <li class="payment-badges__item">{{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}</li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
+    <div class="footer__copyright">
+      {%- assign current_year = 'now' | date: '%Y' -%}
+      <small>{{ 'sections.footer.copyright' | t: year: current_year, shop: shop.name }}</small>
+      {%- if section.settings.show_policies -%}
+        {%- for policy in shop.policies -%}
+          {%- if policy != blank %} <small>· <a href="{{ policy.url }}">{{ policy.title }}</a></small>{% endif -%}
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "class": "section-footer",
+  "settings": [
+    { "type": "text", "id": "tagline", "label": "Tagline", "default": "Play more. Purr more." },
+    { "type": "link_list", "id": "menu", "label": "Footer menu", "default": "footer" },
+    { "type": "checkbox", "id": "show_policies", "label": "Show store policies", "default": true }
+  ]
+}
+{% endschema %}

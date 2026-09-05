@@ -1,0 +1,44 @@
+{%- comment -%} Usage: {% render 'icon', name: 'paw', class: 'my-class' %} {%- endcomment -%}
+{%- assign c = class | default: 'icon' -%}
+{%- case name -%}
+  {%- when 'paw' -%}
+    <svg class="{{ c }}" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><ellipse cx="6" cy="9.5" rx="2.2" ry="3"/><ellipse cx="18" cy="9.5" rx="2.2" ry="3"/><ellipse cx="9.5" cy="5.5" rx="2.2" ry="3"/><ellipse cx="14.5" cy="5.5" rx="2.2" ry="3"/><path d="M12 10.5c-3.4 0-6.5 3.1-6.5 6.2 0 1.9 1.4 3.3 3.2 3.3 1.1 0 2-.5 3.3-.5s2.2.5 3.3.5c1.8 0 3.2-1.4 3.2-3.3 0-3.1-3.1-6.2-6.5-6.2z"/></svg>
+  {%- when 'bolt' -%}
+    <svg class="{{ c }}" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 2 4.5 13.5h6L9.5 22l9-11.5h-6z"/></svg>
+  {%- when 'heart' -%}
+    <svg class="{{ c }}" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-9.3-9.4C1.4 8.2 3.4 4.5 7 4.5c2 0 3.5 1.1 5 3 1.5-1.9 3-3 5-3 3.6 0 5.6 3.7 4.3 7.1C19.5 16.4 12 21 12 21z"/></svg>
+  {%- when 'truck' -%}
+    <svg class="{{ c }}" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h11v9H2zM13 10h4.5l3.5 3v3h-8z"/><circle cx="6" cy="17.5" r="1.8" fill="currentColor"/><circle cx="17" cy="17.5" r="1.8" fill="currentColor"/></svg>
+  {%- when 'shield' -%}
+    <svg class="{{ c }}" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 4.5 5.5v6c0 4.6 3.2 8.2 7.5 9.9 4.3-1.7 7.5-5.3 7.5-9.9v-6z"/><path d="m8.5 12 2.3 2.3L15.5 9.5"/></svg>
+  {%- when 'lock' -%}
+    <svg class="{{ c }}" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="10.5" rx="2"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/><circle cx="12" cy="15.5" r="1.3" fill="currentColor"/></svg>
+  {%- when 'brain' -%}
+    <svg class="{{ c }}" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 3.5a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 1.5 5.2A3 3 0 0 0 11 19V6a2.5 2.5 0 0 0-1.5-2.5z"/><path d="M14.5 3.5a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-1.5 5.2A3 3 0 0 1 13 19V6a2.5 2.5 0 0 1 1.5-2.5z"/><path d="M11 10H8.5M13 13h2.5"/></svg>
+  {%- when 'home' -%}
+    <svg class="{{ c }}" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11.5 12 4l8.5 7.5"/><path d="M6 10v10h12V10"/><path d="M10 20v-6h4v6"/></svg>
+  {%- when 'check' -%}
+    <svg class="{{ c }}" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="11"/><path d="m7 12.5 3.2 3.2L17 9" fill="none" stroke="#151515" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  {%- when 'cat' -%}
+    <svg class="{{ c }}" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4.5 8 8.5h8l4-4v9.5c0 4.4-3.6 7.5-8 7.5s-8-3.1-8-7.5z"/><circle cx="9" cy="13" r="1.2" fill="#fff"/><circle cx="15" cy="13" r="1.2" fill="#fff"/><path d="M12 15.2l-1 1h2z" fill="#fff"/></svg>
+  {%- when 'arrow-right' -%}
+    <svg class="{{ c }}" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+  {%- when 'arrow' -%}
+    <svg class="{{ c }}" aria-hidden="true" viewBox="0 0 14 10" fill="none"><path d="M8.537.808a.5.5 0 01.817-.162l4 4a.5.5 0 010 .708l-4 4a.5.5 0 11-.708-.708L11.793 5.5H1a.5.5 0 010-1h10.793L8.646 1.354a.5.5 0 01-.109-.546z" fill="currentColor"/></svg>
+  {%- when 'caret' -%}
+    <svg class="{{ c }}" aria-hidden="true" viewBox="0 0 10 6" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor"/></svg>
+  {%- when 'search' -%}
+    <svg class="{{ c }}" aria-hidden="true" viewBox="0 0 18 19" fill="none"><path clip-rule="evenodd" d="M11.03 11.68A5.784 5.784 0 112.85 3.5a5.784 5.784 0 018.18 8.18zm.26 1.12a6.78 6.78 0 11.72-.7l5.4 5.4a.5.5 0 11-.71.7l-5.41-5.4z" fill="currentColor" fill-rule="evenodd"/></svg>
+  {%- when 'close' -%}
+    <svg class="{{ c }}" aria-hidden="true" viewBox="0 0 18 17" fill="none"><path d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z" fill="currentColor"/></svg>
+  {%- when 'hamburger' -%}
+    <svg class="{{ c }}" aria-hidden="true" viewBox="0 0 18 16" fill="none"><path d="M1 .5a.5.5 0 100 1h15.71a.5.5 0 000-1H1zM.5 8a.5.5 0 01.5-.5h15.71a.5.5 0 010 1H1A.5.5 0 01.5 8zm0 7a.5.5 0 01.5-.5h15.71a.5.5 0 010 1H1a.5.5 0 01-.5-.5z" fill="currentColor"/></svg>
+  {%- when 'account' -%}
+    <svg class="{{ c }}" aria-hidden="true" viewBox="0 0 18 19" fill="none"><path clip-rule="evenodd" d="M6 4.5a3 3 0 116 0 3 3 0 01-6 0zm3-4a4 4 0 100 8 4 4 0 000-8zm5.58 12.15c1.12.82 1.83 2.24 1.91 4.85H1.51c.08-2.6.79-4.03 1.9-4.85C4.66 11.75 6.5 11.5 9 11.5s4.35.26 5.58 1.15zM9 10.5c-2.5 0-4.65.24-6.17 1.35C1.27 12.98.5 14.93.5 18v.5h17V18c0-3.07-.77-5.02-2.33-6.15-1.52-1.1-3.67-1.35-6.17-1.35z" fill="currentColor" fill-rule="evenodd"/></svg>
+  {%- when 'cart' -%}
+    <svg class="{{ c }}" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h16l-1.2 12H5.2z"/><path d="M8 8V6.5a4 4 0 0 1 8 0V8"/></svg>
+  {%- when 'remove' -%}
+    <svg class="{{ c }}" aria-hidden="true" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M3 4h10M6.5 4V2.5h3V4M4.5 4l.6 9h5.8l.6-9M6.7 6.5v4.5M9.3 6.5v4.5"/></svg>
+  {%- when 'star' -%}
+    <svg class="{{ c }}" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6.2 6.8.8-5 4.6 1.3 6.7L12 17.5 6 20.8l1.3-6.7-5-4.6 6.8-.8z"/></svg>
+{%- endcase -%}

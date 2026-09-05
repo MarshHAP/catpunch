@@ -1,0 +1,6 @@
+{%- assign r = rating | default: 5 -%}
+{%- assign pct = r | times: 20.0 | at_most: 100 | at_least: 0 -%}
+<span class="stars" role="img" aria-label="{{ r }} out of 5 stars">
+  <span class="stars__row" aria-hidden="true">{% for i in (1..5) %}{% render 'icon', name: 'star' %}{% endfor %}</span>
+  <span class="stars__row stars__row--active" style="width: {{ pct }}%;" aria-hidden="true">{% for i in (1..5) %}{% render 'icon', name: 'star' %}{% endfor %}</span>
+</span>

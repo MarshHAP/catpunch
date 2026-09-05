@@ -1,0 +1,27 @@
+<section class="banner">
+  {%- if section.settings.image != blank -%}
+    {{ section.settings.image | image_url: width: 1800 | image_tag: loading: 'lazy', class: 'banner__image', widths: '900, 1800', sizes: '100vw' }}
+  {%- else -%}
+    <img class="banner__image" src="{{ 'banner-champions.svg' | asset_url }}" alt="" loading="lazy" width="1800" height="700">
+  {%- endif -%}
+  <div class="banner__overlay"></div>
+  <div class="page-width banner__inner">
+    <p class="banner__text display">
+      {%- if section.settings.line_1 != blank %}<span>{{ section.settings.line_1 | escape }}</span>{% endif -%}
+      {%- if section.settings.line_2 != blank %}<span>{{ section.settings.line_2 | escape }}</span>{% endif -%}
+      {% render 'icon', name: 'paw', class: 'banner__paw' %}
+    </p>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Lifestyle banner",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Background image", "info": "A wide lifestyle photo. Falls back to the illustrated scene." },
+    { "type": "text", "id": "line_1", "label": "Line 1", "default": "Little champions" },
+    { "type": "text", "id": "line_2", "label": "Line 2", "default": "watch big dreams" }
+  ],
+  "presets": [ { "name": "Lifestyle banner" } ]
+}
+{% endschema %}

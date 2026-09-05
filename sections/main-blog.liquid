@@ -1,0 +1,16 @@
+<section class="section page-width page--narrow">
+  <h1 class="h1 section-title">{{ blog.title | escape }}</h1>
+  {%- paginate blog.articles by 10 -%}
+    {%- for article in blog.articles -%}
+      <article class="article-card">
+        <h2 class="h3"><a href="{{ article.url }}">{{ article.title | escape }}</a></h2>
+        <p class="article-card__meta">{{ article.published_at | date: '%d %B %Y' }} {{ 'blogs.article.written_by' | t: author: article.author }}</p>
+        <p>{{ article.excerpt_or_content | strip_html | truncatewords: 40 }}</p>
+      </article>
+    {%- endfor -%}
+    {%- if paginate.pages > 1 -%}{{ paginate | default_pagination }}{%- endif -%}
+  {%- endpaginate -%}
+</section>
+{% schema %}
+{ "name": "Blog", "settings": [] }
+{% endschema %}

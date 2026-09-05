@@ -1,0 +1,42 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "settings": {
+        "subtitle": "Interactive Cat Boxing Bag",
+        "rating": 5,
+        "rating_label": "(1,247 reviews)",
+        "bundle_title": "Choose Your Bundle:",
+        "benefit_1": "Keeps cats active and healthy",
+        "benefit_2": "Strong suction cup base",
+        "benefit_3": "Self-rebound action for endless fun",
+        "benefit_4": "Scratch & bite resistant",
+        "benefit_5": "No batteries needed",
+        "trust_1_icon": "truck", "trust_1_title": "Fast & free shipping", "trust_1_text": "On all orders",
+        "trust_2_icon": "shield", "trust_2_title": "30 day returns", "trust_2_text": "Hassle free",
+        "trust_3_icon": "lock", "trust_3_title": "Secure checkout", "trust_3_text": "256-bit SSL encrypted"
+      }
+    },
+    "features": {
+      "type": "feature-cards",
+      "blocks": {
+        "f1": { "type": "card", "settings": { "fallback": "pdp-feature-base.webp", "heading": "Strong suction cup base", "text": "Stays securely in place during even the wildest play.", "color": "#FFD21E" } },
+        "f2": { "type": "card", "settings": { "fallback": "pdp-feature-gloves.webp", "heading": "Fun boxing gloves", "text": "Soft, safe and irresistible for curious cats.", "color": "#F7752E" } },
+        "f3": { "type": "card", "settings": { "fallback": "pdp-feature-rebound.webp", "heading": "Self-rebound action", "text": "Bounces back for non-stop fun and longer play sessions.", "color": "#FFD21E" } }
+      },
+      "block_order": ["f1", "f2", "f3"]
+    },
+    "reviews": {
+      "type": "testimonials",
+      "settings": { "heading": "Real cats. Real results.", "subheading": "Join thousands of happy cat owners.", "rating": 5 },
+      "blocks": {
+        "r1": { "type": "review", "settings": { "fallback": "pdp-review-1.webp", "rating": 5, "text": "My cat is obsessed! Plays with it every day.", "author": "Emma R." } },
+        "r2": { "type": "review", "settings": { "fallback": "pdp-review-2.webp", "rating": 5, "text": "Best purchase ever. Keeps him so active!", "author": "James T." } },
+        "r3": { "type": "review", "settings": { "fallback": "pdp-review-3.webp", "rating": 5, "text": "So much fun to watch. Amazing quality.", "author": "Sophie L." } },
+        "r4": { "type": "review", "settings": { "fallback": "pdp-review-4.webp", "rating": 5, "text": "Both of my cats love it! Worth every penny.", "author": "Daniel K." } }
+      },
+      "block_order": ["r1", "r2", "r3", "r4"]
+    }
+  },
+  "order": ["main", "features", "reviews"]
+}

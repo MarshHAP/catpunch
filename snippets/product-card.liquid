@@ -1,0 +1,15 @@
+<li class="product-card">
+  <a href="{{ product.url }}" class="product-card__media">
+    {%- if product.featured_media -%}
+      {{ product.featured_media | image_url: width: 600, height: 600, crop: 'center' | image_tag: loading: 'lazy', alt: product.featured_media.alt | escape }}
+    {%- endif -%}
+  </a>
+  <div class="product-card__info">
+    <h3 class="product-card__title h4"><a href="{{ product.url }}">{{ product.title | escape }}</a></h3>
+    <div class="price price--small">
+      <span class="price__sale">{{ product.price | money }}</span>
+      {%- if product.compare_at_price > product.price %}<s class="price__compare">{{ product.compare_at_price | money }}</s>{% endif -%}
+    </div>
+    <a href="{{ product.url }}" class="button button--full-width">{{ 'products.product.view_details' | t }}</a>
+  </div>
+</li>

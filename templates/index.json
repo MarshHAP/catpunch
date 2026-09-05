@@ -1,0 +1,98 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "heading_line_1": "Keep your cat active",
+        "heading_line_2": "Happy & healthy",
+        "button_label": "Shop now",
+        "button_link": "#featured-product",
+        "sticker_1": "Play",
+        "sticker_2": "Fight",
+        "sticker_3": "Stay active!"
+      },
+      "blocks": {
+        "b1": { "type": "badge", "settings": { "icon": "paw", "label": "Builds healthy habits" } },
+        "b2": { "type": "badge", "settings": { "icon": "bolt", "label": "Relieves boredom" } },
+        "b3": { "type": "badge", "settings": { "icon": "heart", "label": "A happier, calmer cat" } }
+      },
+      "block_order": ["b1", "b2", "b3"]
+    },
+    "trust": {
+      "type": "trust-bar",
+      "blocks": {
+        "t1": { "type": "item", "settings": { "icon": "truck", "title": "Fast & free shipping", "text": "On all orders" } },
+        "t2": { "type": "item", "settings": { "icon": "shield", "title": "30 day returns", "text": "Hassle free" } },
+        "t3": { "type": "item", "settings": { "icon": "cat", "title": "Happy cats", "text": "Thousands of 5 star reviews" } }
+      },
+      "block_order": ["t1", "t2", "t3"]
+    },
+    "featured": {
+      "type": "featured-product",
+      "settings": {
+        "product": "cat-punch",
+        "subtitle": "Interactive Cat Boxing Bag",
+        "rating": 5,
+        "rating_label": "(1,247 reviews)",
+        "bundle_title": "Choose Your Bundle:",
+        "benefit_1": "Keeps cats active and healthy",
+        "benefit_2": "Strong suction cup base",
+        "benefit_3": "Self-rebound action for endless fun",
+        "benefit_4": "Scratch & bite resistant",
+        "benefit_5": "No batteries needed",
+        "trust_1_icon": "truck", "trust_1_title": "Fast & free shipping", "trust_1_text": "On all orders",
+        "trust_2_icon": "shield", "trust_2_title": "30 day returns", "trust_2_text": "Hassle free",
+        "trust_3_icon": "lock", "trust_3_title": "Secure checkout", "trust_3_text": "256-bit SSL encrypted"
+      }
+    },
+    "features": {
+      "type": "feature-cards",
+      "blocks": {
+        "f1": { "type": "card", "settings": { "fallback": "pdp-feature-base.webp", "heading": "Strong suction cup base", "text": "Stays securely in place during even the wildest play.", "color": "#FFD21E" } },
+        "f2": { "type": "card", "settings": { "fallback": "pdp-feature-gloves.webp", "heading": "Fun boxing gloves", "text": "Soft, safe and irresistible for curious cats.", "color": "#F7752E" } },
+        "f3": { "type": "card", "settings": { "fallback": "pdp-feature-rebound.webp", "heading": "Self-rebound action", "text": "Bounces back for non-stop fun and longer play sessions.", "color": "#FFD21E" } }
+      },
+      "block_order": ["f1", "f2", "f3"]
+    },
+    "banner": {
+      "type": "lifestyle-banner",
+      "settings": { "line_1": "Little champions", "line_2": "watch big dreams" }
+    },
+    "reviews": {
+      "type": "testimonials",
+      "settings": { "heading": "Real cats. Real results.", "subheading": "Join thousands of happy cat owners.", "rating": 5 },
+      "blocks": {
+        "r1": { "type": "review", "settings": { "fallback": "pdp-review-1.webp", "rating": 5, "text": "My cat is obsessed! Plays with it every day.", "author": "Emma R." } },
+        "r2": { "type": "review", "settings": { "fallback": "pdp-review-2.webp", "rating": 5, "text": "Best purchase ever. Keeps him so active!", "author": "James T." } },
+        "r3": { "type": "review", "settings": { "fallback": "pdp-review-3.webp", "rating": 5, "text": "So much fun to watch. Amazing quality.", "author": "Sophie L." } },
+        "r4": { "type": "review", "settings": { "fallback": "pdp-review-4.webp", "rating": 5, "text": "Both of my cats love it! Worth every penny.", "author": "Daniel K." } }
+      },
+      "block_order": ["r1", "r2", "r3", "r4"]
+    },
+    "gift": {
+      "type": "gift-cta",
+      "settings": { "sticker": "The purrfect gift!", "heading": "A small toy for a happier, healthier cat.", "button_label": "Shop now", "button_link": "#featured-product" }
+    },
+    "benefits": {
+      "type": "benefits-row",
+      "blocks": {
+        "n1": { "type": "item", "settings": { "icon": "paw", "title": "Keeps cats active", "text": "Encourages healthy movement and exercise." } },
+        "n2": { "type": "item", "settings": { "icon": "brain", "title": "Mental stimulation", "text": "Fights boredom and reduces anxiety." } },
+        "n3": { "type": "item", "settings": { "icon": "heart", "title": "Happier cats", "text": "A more fulfilled and balanced pet." } },
+        "n4": { "type": "item", "settings": { "icon": "home", "title": "Perfect for home", "text": "Compact design fits any space." } }
+      },
+      "block_order": ["n1", "n2", "n3", "n4"]
+    },
+    "faq": {
+      "type": "faq",
+      "settings": { "heading": "Frequently asked questions" },
+      "blocks": {
+        "q1": { "type": "question", "settings": { "question": "Will the suction cup stick to my floor?", "answer": "<p>Cat Punch grips best on smooth, hard surfaces such as tiles, laminate, hardwood and glass. Wipe the surface clean, press the base down firmly and it stays put through even the wildest play.</p>" } },
+        "q2": { "type": "question", "settings": { "question": "Is it safe for kittens?", "answer": "<p>Yes. The gloves are soft, the bag is scratch and bite resistant and there are no batteries or small parts. It suits cats of every age and size.</p>" } },
+        "q3": { "type": "question", "settings": { "question": "Does it need batteries?", "answer": "<p>No. The self-rebound spring does all the work, so Cat Punch is ready to play straight out of the box.</p>" } }
+      },
+      "block_order": ["q1", "q2", "q3"]
+    }
+  },
+  "order": ["hero", "trust", "featured", "features", "banner", "reviews", "gift", "benefits", "faq"]
+}
