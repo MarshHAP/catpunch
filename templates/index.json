@@ -44,9 +44,10 @@
         "heading_line_2": "Happy & healthy",
         "button_label": "Shop now",
         "button_link": "#featured-product",
-        "sticker_1": "Play",
-        "sticker_2": "Fight",
-        "sticker_3": "Stay active!"
+        "image": "shopify://shop_images/pdp-09.png",
+        "sticker_1": "",
+        "sticker_2": "",
+        "sticker_3": ""
       }
     },
     "trust": {
