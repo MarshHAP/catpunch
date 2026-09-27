@@ -15,8 +15,8 @@
       { "type": "color", "id": "color_cta", "label": "Button red", "default": "#E3342F" },
       { "type": "color", "id": "color_text", "label": "Text", "default": "#151515" },
       { "type": "color", "id": "color_background", "label": "Background", "default": "#FFFFFF" },
-      { "type": "color", "id": "color_background_alt", "label": "Product section background", "default": "#FFF6D6" },
-      { "type": "color", "id": "color_cream", "label": "Trust bar background", "default": "#FFFBEA" },
+      { "type": "color", "id": "color_background_alt", "label": "Product section background", "default": "#FFFFFF" },
+      { "type": "color", "id": "color_cream", "label": "Trust bar background", "default": "#FFFFFF" },
       { "type": "color", "id": "color_dark", "label": "Footer background", "default": "#111111" },
       { "type": "color", "id": "color_star", "label": "Star rating", "default": "#FFC400" }
     ]
