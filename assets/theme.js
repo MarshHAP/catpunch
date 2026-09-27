@@ -131,7 +131,13 @@
       sessionStorage.setItem(key, String(ends));
     }
     const tick = () => {
-      const left = Math.max(0, Math.floor((ends - Date.now()) / 1000));
+      let left = Math.floor((ends - Date.now()) / 1000);
+      if (left <= 0) {
+        // timer ran out: start a fresh reservation window
+        ends = Date.now() + minutes * 60000;
+        sessionStorage.setItem(key, String(ends));
+        left = minutes * 60;
+      }
       const out = $("[data-cart-timer-value]", el);
       if (out) out.textContent = `${String(Math.floor(left / 60)).padStart(2, "0")}:${String(left % 60).padStart(2, "0")}`;
     };

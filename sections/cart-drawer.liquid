@@ -17,7 +17,11 @@
       </div>
     {%- else -%}
       {%- if settings.cart_reserve_minutes > 0 -%}
-        <div class="cart-drawer__reserve" data-cart-timer data-minutes="{{ settings.cart_reserve_minutes }}">{%- capture timer_html -%}<span data-cart-timer-value>--:--</span>{%- endcapture -%}{{ 'cart.reserved' | t: time: timer_html }}</div>
+        <div class="cart-drawer__reserve" data-cart-timer data-minutes="{{ settings.cart_reserve_minutes }}" role="status" aria-live="polite">
+          <span class="cart-drawer__reserve-icon" aria-hidden="true">&#9201;</span>
+          <span class="cart-drawer__reserve-label">{{ 'cart.reserved' | t }}</span>
+          <span class="cart-drawer__reserve-time" data-cart-timer-value>{{ settings.cart_reserve_minutes }}:00</span>
+        </div>
       {%- endif -%}
       <div class="cart-drawer__items">
         {%- for item in cart.items -%}
@@ -61,7 +65,8 @@
           <span>{{ cart.total_price | money }}</span>
         </div>
         {%- if compare_total > cart.total_price -%}
-          <p class="cart-drawer__savings">{{ 'cart.saving' | t: amount: compare_total | minus: cart.total_price | money }}</p>
+          {%- assign savings_amount = compare_total | minus: cart.total_price | money -%}
+          <p class="cart-drawer__savings">{{ 'cart.saving' | t: amount: savings_amount }}</p>
         {%- endif -%}
         <p class="cart-drawer__note">{{ 'cart.taxes_and_shipping' | t }}</p>
         <form action="{{ routes.cart_url }}" method="post">

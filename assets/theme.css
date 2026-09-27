@@ -359,7 +359,9 @@ details[open] .faq__caret { transform: rotate(180deg); }
 
 /* Cart drawer & cart page ----------------------------------- */
 .cart-drawer__heading { font-size: 18px; }
-.cart-drawer__reserve { margin: 16px 20px 0; padding: 10px 14px; border-radius: 8px; background: var(--color-text); color: #fff; font-size: 13px; font-weight: 700; text-align: center; }
+.cart-drawer__reserve { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 16px 20px 0; padding: 10px 14px; border-radius: 10px; background: var(--color-accent); color: var(--color-text); font-size: 13px; font-weight: 700; text-align: center; }
+.cart-drawer__reserve-icon { font-size: 15px; line-height: 1; }
+.cart-drawer__reserve-time { font-family: var(--font-display); font-size: 20px; line-height: 1; letter-spacing: 0.06em; min-width: 3.2em; color: var(--color-cta); font-variant-numeric: tabular-nums; }
 .cart-drawer__items { flex: 1; overflow-y: auto; padding: 16px 20px; }
 .cart-drawer__empty { padding: 30px 20px; text-align: center; display: flex; flex-direction: column; gap: 14px; align-items: center; }
 .cart-item { display: flex; gap: 14px; padding: 12px 0; border-bottom: 1px solid rgba(var(--color-text-rgb), 0.08); }
@@ -375,7 +377,7 @@ details[open] .faq__caret { transform: rotate(180deg); }
 .cart-item__remove .icon { width: 16px; height: 16px; }
 .cart-drawer__footer { padding: 16px 20px 20px; border-top: 1px solid rgba(var(--color-text-rgb), 0.08); display: flex; flex-direction: column; gap: 8px; }
 .cart-drawer__subtotal { display: flex; justify-content: space-between; font-size: 18px; font-weight: 800; color: var(--color-text); }
-.cart-drawer__savings { color: var(--color-cta); font-weight: 600; font-size: 14px; }
+.cart-drawer__savings { color: rgba(var(--color-text-rgb), 0.7); font-weight: 600; font-size: 14px; }
 .cart-drawer__note { font-size: 12px; color: rgba(var(--color-text-rgb), 0.6); margin-bottom: 6px; }
 .cart-drawer__payments { margin-top: 6px; }
 .cart-drawer.is-loading .cart-drawer__items { opacity: 0.5; pointer-events: none; }
