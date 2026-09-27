@@ -10,37 +10,42 @@
       {%- if section.settings.subheading != blank %}<p class="marquee-reviews__sub">{{ section.settings.subheading | escape }}</p>{% endif -%}
     </div>
   {%- endif -%}
-  <div class="marquee" data-marquee>
-    <div class="marquee__track">
-      {%- for pass in (1..2) -%}
-        <ul class="marquee__list list-unstyled" role="list" {% if pass == 2 %}aria-hidden="true"{% endif %}>
-          {%- for block in section.blocks -%}
-            <li class="review-card review-card--{{ block.settings.avatar_position }}" {% if pass == 1 %}{{ block.shopify_attributes }}{% endif %}>
-              <div class="review-card__media">
-                {%- if block.settings.image != blank -%}
-                  {{ block.settings.image | image_url: width: 720, height: 720, crop: 'center' | image_tag: loading: 'lazy', alt: '' }}
-                {%- elsif block.settings.image_fallback != blank -%}
-                  <img src="{{ block.settings.image_fallback | asset_url }}" alt="" loading="lazy" width="720" height="720">
-                {%- endif -%}
-                <span class="review-card__avatar">
-                  {%- if block.settings.avatar != blank -%}
-                    {{ block.settings.avatar | image_url: width: 200, height: 200, crop: 'center' | image_tag: loading: 'lazy', alt: '' }}
-                  {%- elsif block.settings.avatar_fallback != blank -%}
-                    <img src="{{ block.settings.avatar_fallback | asset_url }}" alt="" loading="lazy" width="200" height="200">
-                  {%- endif -%}
-                </span>
-              </div>
-              <div class="review-card__body">
-                <div class="review-card__stars">{% render 'stars', rating: block.settings.rating %}</div>
-                <p class="review-card__quote">&ldquo;{{ block.settings.quote | escape }}&rdquo;</p>
-                <p class="review-card__name">{{ block.settings.name | escape }}{% if block.settings.verified %} <span class="review-card__verified">{% render 'icon', name: 'check' %} Verified buyer</span>{% endif %}</p>
-              </div>
-            </li>
-          {%- endfor -%}
-        </ul>
-      {%- endfor -%}
+  {%- for row in (1..2) -%}
+    <div class="marquee{% if row == 2 %} marquee--reverse{% endif %}" data-marquee>
+      <div class="marquee__track">
+        {%- for pass in (1..2) -%}
+          <ul class="marquee__list list-unstyled" role="list" {% if pass == 2 %}aria-hidden="true"{% endif %}>
+            {%- for block in section.blocks -%}
+              {%- assign block_row = forloop.index | modulo: 2 -%}
+              {%- if row == 1 and block_row == 1 or row == 2 and block_row == 0 -%}
+                <li class="review-card review-card--{{ block.settings.avatar_position }}" {% if pass == 1 %}{{ block.shopify_attributes }}{% endif %}>
+                  <div class="review-card__media">
+                    {%- if block.settings.image != blank -%}
+                      {{ block.settings.image | image_url: width: 720, height: 720, crop: 'center' | image_tag: loading: 'lazy', alt: '' }}
+                    {%- elsif block.settings.image_fallback != blank -%}
+                      <img src="{{ block.settings.image_fallback | asset_url }}" alt="" loading="lazy" width="720" height="720">
+                    {%- endif -%}
+                    <span class="review-card__avatar">
+                      {%- if block.settings.avatar != blank -%}
+                        {{ block.settings.avatar | image_url: width: 200, height: 200, crop: 'center' | image_tag: loading: 'lazy', alt: '' }}
+                      {%- elsif block.settings.avatar_fallback != blank -%}
+                        <img src="{{ block.settings.avatar_fallback | asset_url }}" alt="" loading="lazy" width="200" height="200">
+                      {%- endif -%}
+                    </span>
+                  </div>
+                  <div class="review-card__body">
+                    <div class="review-card__stars">{% render 'stars', rating: block.settings.rating %}</div>
+                    <p class="review-card__quote">&ldquo;{{ block.settings.quote | escape }}&rdquo;</p>
+                    <p class="review-card__name">{{ block.settings.name | escape }}{% if block.settings.verified %} <span class="review-card__verified">{% render 'icon', name: 'check' %} Verified buyer</span>{% endif %}</p>
+                  </div>
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        {%- endfor -%}
+      </div>
     </div>
-  </div>
+  {%- endfor -%}
 </section>
 {%- endif -%}
 
