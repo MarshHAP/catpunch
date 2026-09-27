@@ -145,6 +145,27 @@
           <div class="product-form__error" data-form-error role="alert" hidden></div>
         {%- endform -%}
 
+        {%- if section.settings.show_stock_notice -%}
+          {%- liquid
+            assign min_days = section.settings.delivery_min_days | default: 3
+            assign max_days = section.settings.delivery_max_days | default: 5
+            assign day_seconds = 86400
+            assign now_s = 'now' | date: '%s' | plus: 0
+            assign start_s = min_days | times: day_seconds | plus: now_s
+            assign end_s = max_days | times: day_seconds | plus: now_s
+            assign start_label = start_s | date: '%a %-d %b'
+            assign end_label = end_s | date: '%a %-d %b'
+          -%}
+          <p class="stock-notice" data-delivery-estimate data-min-days="{{ min_days }}" data-max-days="{{ max_days }}">
+            <span class="stock-notice__dot" aria-hidden="true"></span>
+            <span class="stock-notice__text">
+              <strong>{{ section.settings.stock_notice_title | escape }}</strong>
+              {{ section.settings.stock_notice_text | escape }}
+              <strong class="stock-notice__dates" data-delivery-dates>{{ start_label }} &ndash; {{ end_label }}</strong>
+            </span>
+          </p>
+        {%- endif -%}
+
         {%- capture trust -%}
           {%- for i in (1..3) -%}
             {%- assign tkey = 'trust_' | append: i | append: '_title' -%}

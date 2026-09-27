@@ -26,7 +26,13 @@
     { "type": "select", "id": "trust_3_icon", "label": "Icon 3", "default": "lock", "options": [ { "value": "paw", "label": "Paw" }, { "value": "bolt", "label": "Bolt" }, { "value": "heart", "label": "Heart" }, { "value": "truck", "label": "Truck" }, { "value": "shield", "label": "Shield" }, { "value": "lock", "label": "Lock" }, { "value": "brain", "label": "Brain" }, { "value": "home", "label": "Home" }, { "value": "cat", "label": "Cat" }, { "value": "check", "label": "Check" } ] },
     { "type": "text", "id": "trust_3_title", "label": "Title 3", "default": "Secure checkout" },
     { "type": "text", "id": "trust_3_text", "label": "Text 3", "default": "256-bit SSL encrypted" },
-    { "type": "checkbox", "id": "show_description", "label": "Show product description accordion", "default": true }
+    { "type": "checkbox", "id": "show_description", "label": "Show product description accordion", "default": true },
+    { "type": "header", "content": "Stock notice" },
+    { "type": "checkbox", "id": "show_stock_notice", "label": "Show stock notice under Add to cart", "default": true },
+    { "type": "text", "id": "stock_notice_title", "label": "Title", "default": "Limited stock available." },
+    { "type": "text", "id": "stock_notice_text", "label": "Text (delivery dates are appended)", "default": "Based on your location, delivery is estimated" },
+    { "type": "range", "id": "delivery_min_days", "min": 1, "max": 14, "step": 1, "unit": "d", "label": "Earliest delivery (days from today)", "default": 3 },
+    { "type": "range", "id": "delivery_max_days", "min": 1, "max": 21, "step": 1, "unit": "d", "label": "Latest delivery (days from today)", "default": 5 }
   ]
 }
 {% endschema %}

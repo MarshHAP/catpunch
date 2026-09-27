@@ -303,6 +303,17 @@
 
   $$("[data-product-section]").forEach(initProduct);
 
+  /* Delivery estimate: 3-5 days from the visitor's own clock/locale ------ */
+  function initDeliveryEstimate(el) {
+    const out = $("[data-delivery-dates]", el);
+    if (!out) return;
+    const min = parseInt(el.dataset.minDays, 10) || 3, max = parseInt(el.dataset.maxDays, 10) || 5;
+    const fmt = new Intl.DateTimeFormat(undefined, { weekday: "short", day: "numeric", month: "short" });
+    const plus = (d) => { const x = new Date(); x.setDate(x.getDate() + d); return x; };
+    out.textContent = `${fmt.format(plus(min))} \u2013 ${fmt.format(plus(max))}`;
+  }
+  $$("[data-delivery-estimate]").forEach(initDeliveryEstimate);
+
   /* Reveal ------------------------------------------------------ */
   const reveals = $$(".reveal");
   if ("IntersectionObserver" in window && reveals.length) {
@@ -337,6 +348,7 @@
   /* Theme editor: re-init sections when they load ----------------- */
   document.addEventListener("shopify:section:load", (e) => {
     $$("[data-product-section]", e.target).forEach(initProduct);
+    $$("[data-delivery-estimate]", e.target).forEach(initDeliveryEstimate);
     $$(".reveal", e.target).forEach((r) => r.classList.add("is-shown"));
   });
 })();
