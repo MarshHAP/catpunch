@@ -314,6 +314,37 @@
   }
   $$("[data-delivery-estimate]").forEach(initDeliveryEstimate);
 
+  /* Marquee: clone the strip until it is wider than the screen, scroll by exact px --- */
+  function initMarquee(m) {
+    const track = $(".marquee__track", m);
+    if (!track) return;
+    const lists = $$(".marquee__list", track);
+    if (!lists.length) return;
+    const base = lists[0];
+    lists.slice(1).forEach((l) => l.remove());
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const listW = base.getBoundingClientRect().width;
+    const viewW = m.getBoundingClientRect().width;
+    if (!listW || !viewW) return;
+    const copies = Math.max(2, Math.ceil((viewW * 2) / listW) + 1);
+    for (let i = 1; i < copies; i++) {
+      const c = base.cloneNode(true);
+      c.setAttribute("aria-hidden", "true");
+      c.querySelectorAll("img").forEach((img) => img.setAttribute("loading", "eager"));
+      track.appendChild(c);
+    }
+    const pxPerSec = parseFloat(m.dataset.speed) || 40;
+    track.style.setProperty("--marquee-shift", `${listW}px`);
+    track.style.setProperty("--marquee-duration", `${listW / pxPerSec}s`);
+  }
+  const marquees = $$("[data-marquee]");
+  marquees.forEach(initMarquee);
+  let marqueeResize = 0;
+  window.addEventListener("resize", () => {
+    clearTimeout(marqueeResize);
+    marqueeResize = setTimeout(() => $$("[data-marquee]").forEach(initMarquee), 200);
+  });
+
   /* Reveal ------------------------------------------------------ */
   const reveals = $$(".reveal");
   if ("IntersectionObserver" in window && reveals.length) {
@@ -349,6 +380,7 @@
   document.addEventListener("shopify:section:load", (e) => {
     $$("[data-product-section]", e.target).forEach(initProduct);
     $$("[data-delivery-estimate]", e.target).forEach(initDeliveryEstimate);
+    $$("[data-marquee]", e.target).forEach(initMarquee);
     $$(".reveal", e.target).forEach((r) => r.classList.add("is-shown"));
   });
 })();
