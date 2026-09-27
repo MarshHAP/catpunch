@@ -16,8 +16,10 @@
         {%- for pass in (1..2) -%}
           <ul class="marquee__list list-unstyled" role="list" {% if pass == 2 %}aria-hidden="true"{% endif %}>
             {%- for block in section.blocks -%}
+              {%- comment -%} Liquid has no operator precedence, so compute the row once {%- endcomment -%}
               {%- assign block_row = forloop.index | modulo: 2 -%}
-              {%- if row == 1 and block_row == 1 or row == 2 and block_row == 0 -%}
+              {%- if block_row == 0 -%}{%- assign block_row = 2 -%}{%- endif -%}
+              {%- if block_row == row -%}
                 <li class="review-card review-card--{{ block.settings.avatar_position }}" {% if pass == 1 %}{{ block.shopify_attributes }}{% endif %}>
                   <div class="review-card__media">
                     {%- if block.settings.image != blank -%}
