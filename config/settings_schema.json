@@ -12,7 +12,7 @@
     "settings": [
       { "type": "color", "id": "color_accent", "label": "Brand yellow", "default": "#FFD21E" },
       { "type": "color", "id": "color_accent_deep", "label": "Sunburst orange", "default": "#F7A11A" },
-      { "type": "color", "id": "color_cta", "label": "Button red", "default": "#E3342F" },
+      { "type": "color", "id": "color_cta", "label": "Buttons, price & highlights", "default": "#151515" },
       { "type": "color", "id": "color_text", "label": "Text", "default": "#151515" },
       { "type": "color", "id": "color_background", "label": "Background", "default": "#FFFFFF" },
       { "type": "color", "id": "color_background_alt", "label": "Product section background", "default": "#FFFFFF" },
