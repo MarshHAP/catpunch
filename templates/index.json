@@ -218,10 +218,153 @@
       "settings": {
         "heading": "Frequently asked questions"
       }
+    },
+    "photos": {
+      "type": "testimonial-marquee",
+      "settings": {
+        "heading": "Happy cats everywhere",
+        "subheading": "Real photos from real Cat Punch owners",
+        "speed": 60
+      },
+      "blocks": {
+        "m1": {
+          "type": "review",
+          "settings": {
+            "image_fallback": "review-cat-1.webp",
+            "avatar_fallback": "review-avatar-1.webp",
+            "avatar_position": "bottom-left",
+            "rating": 5,
+            "quote": "Unboxed it, stuck it down, and Milo was swinging before I finished the instructions.",
+            "name": "Hannah B.",
+            "verified": true
+          }
+        },
+        "m2": {
+          "type": "review",
+          "settings": {
+            "image_fallback": "review-cat-2.webp",
+            "avatar_fallback": "review-avatar-8.webp",
+            "avatar_position": "bottom-right",
+            "rating": 5,
+            "quote": "Biscuit boxes this thing every morning while I make coffee. Best £20 I've spent.",
+            "name": "Priya S.",
+            "verified": true
+          }
+        },
+        "m3": {
+          "type": "review",
+          "settings": {
+            "image_fallback": "review-cat-3.webp",
+            "avatar_fallback": "review-avatar-10.webp",
+            "avatar_position": "top-left",
+            "rating": 5,
+            "quote": "My fluffy old man hasn't played in years. Now he won't leave it alone.",
+            "name": "Sofia R.",
+            "verified": true
+          }
+        },
+        "m4": {
+          "type": "review",
+          "settings": {
+            "image_fallback": "review-cat-4.webp",
+            "avatar_fallback": "review-avatar-9.webp",
+            "avatar_position": "bottom-left",
+            "rating": 5,
+            "quote": "Oreo ignores every toy we buy. This one has survived three weeks of daily punching.",
+            "name": "Mina K.",
+            "verified": true
+          }
+        },
+        "m5": {
+          "type": "review",
+          "settings": {
+            "image_fallback": "review-cat-5.webp",
+            "avatar_fallback": "review-avatar-2.webp",
+            "avatar_position": "bottom-right",
+            "rating": 5,
+            "quote": "He punches it while we watch TV. The bounce back keeps him going for ages.",
+            "name": "Claire M.",
+            "verified": true
+          }
+        },
+        "m6": {
+          "type": "review",
+          "settings": {
+            "image_fallback": "review-cat-6.webp",
+            "avatar_fallback": "review-avatar-5.webp",
+            "avatar_position": "top-right",
+            "rating": 5,
+            "quote": "Our Bengal needs constant entertainment. The suction cup hasn't budged once on the tiles.",
+            "name": "Ellie T.",
+            "verified": true
+          }
+        },
+        "m7": {
+          "type": "review",
+          "settings": {
+            "image_fallback": "review-cat-7.webp",
+            "avatar_fallback": "review-avatar-4.webp",
+            "avatar_position": "bottom-left",
+            "rating": 5,
+            "quote": "Both cats take turns on it. Genuinely the first toy they both agree on.",
+            "name": "Linda W.",
+            "verified": true
+          }
+        },
+        "m8": {
+          "type": "review",
+          "settings": {
+            "image_fallback": "review-cat-8.webp",
+            "avatar_fallback": "review-avatar-3.webp",
+            "avatar_position": "bottom-right",
+            "rating": 5,
+            "quote": "Ginger is a chunky boy and needed exercise. He's lost weight and loves every round.",
+            "name": "Aaliyah J.",
+            "verified": true
+          }
+        },
+        "m9": {
+          "type": "review",
+          "settings": {
+            "image_fallback": "review-cat-9.webp",
+            "avatar_fallback": "review-avatar-6.webp",
+            "avatar_position": "top-left",
+            "rating": 5,
+            "quote": "Set up in thirty seconds next to my desk. Perfect distraction from my laptop keyboard.",
+            "name": "Nadia F.",
+            "verified": true
+          }
+        },
+        "m10": {
+          "type": "review",
+          "settings": {
+            "image_fallback": "review-cat-10.webp",
+            "avatar_fallback": "review-avatar-7.webp",
+            "avatar_position": "bottom-right",
+            "rating": 5,
+            "quote": "Our kitten discovered it in the laundry room and now guards it like a champion.",
+            "name": "Margaret H.",
+            "verified": true
+          }
+        }
+      },
+      "block_order": [
+        "m1",
+        "m2",
+        "m3",
+        "m4",
+        "m5",
+        "m6",
+        "m7",
+        "m8",
+        "m9",
+        "m10"
+      ]
     }
   },
   "order": [
     "featured",
+    "photos",
     "features",
     "banner",
     "reviews",

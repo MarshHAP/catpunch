@@ -10,17 +10,18 @@ integration (Online Store → Themes → Add theme → Connect from GitHub).
 layout/      theme.liquid, password.liquid
 templates/   index, product, collection, cart, page, page.contact, search, 404, blog, article,
              list-collections, password, gift_card, customers/*
-sections/    header, footer, featured-product, main-product, feature-cards,
+sections/    header, footer, testimonial-marquee, featured-product, main-product, feature-cards,
              lifestyle-banner, testimonials, gift-cta, benefits-row, faq, cart-drawer, main-* pages
 snippets/    product-form (shared buy box), icon, wordmark, stars, product-card, meta-tags, …
-assets/      theme.css, theme.js, Bangers + Poppins fonts, fallback PDP images (pdp-*.webp)
+assets/      theme.css, theme.js, Bangers + Poppins fonts, fallback PDP images (pdp-*.webp),
+             customer marquee photos (review-cat-*.webp, review-avatar-*.webp)
 config/      settings_schema.json (colours, wordmark, cart), settings_data.json
 locales/     en.default.json
 ```
 
 ## Home page
 
-`templates/index.json` lays out the design: featured product → feature cards → lifestyle banner →
+`templates/index.json` lays out the design: featured product → customer photo marquee → feature cards → lifestyle banner →
 reviews → gift call-to-action → benefits row → FAQ. The hero and trust bar sections from the original design were removed. Every block of copy is a
 section or block setting, editable in the theme editor.
 
