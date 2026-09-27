@@ -20,8 +20,9 @@ locales/     en.default.json
 
 ## Home page
 
-`templates/index.json` lays out the design: hero → trust bar → featured product → feature cards →
-lifestyle banner → reviews → gift call-to-action → benefits row → FAQ. Every block of copy is a
+`templates/index.json` lays out the design: featured product → feature cards → lifestyle banner →
+reviews → gift call-to-action → benefits row → FAQ. The hero and trust bar sections are still in the
+theme and can be added back from the editor. Every block of copy is a
 section or block setting, editable in the theme editor.
 
 The featured product section points at the product with handle `cat-punch`. Bundles are the
