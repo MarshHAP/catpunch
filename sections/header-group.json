@@ -1,18 +1,61 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "name": "Header",
   "type": "header",
   "sections": {
     "header": {
       "type": "header",
-      "settings": {},
       "blocks": {
-        "l1": { "type": "link", "settings": { "label": "Home", "url": "/" } },
-        "l2": { "type": "link", "settings": { "label": "Shop", "url": "/#featured-product" } },
-        "l3": { "type": "link", "settings": { "label": "About", "url": "/#about" } },
-        "l4": { "type": "link", "settings": { "label": "Reviews", "url": "/#reviews" } }
+        "l1": {
+          "type": "link",
+          "settings": {
+            "label": "Home",
+            "url": "/"
+          }
+        },
+        "l2": {
+          "type": "link",
+          "settings": {
+            "label": "Shop",
+            "url": "/#featured-product"
+          }
+        },
+        "l3": {
+          "type": "link",
+          "settings": {
+            "label": "About",
+            "url": "/#about"
+          }
+        },
+        "l4": {
+          "type": "link",
+          "settings": {
+            "label": "Reviews",
+            "url": "/#reviews"
+          }
+        }
       },
-      "block_order": ["l1", "l2", "l3", "l4"]
+      "block_order": [
+        "l1",
+        "l2",
+        "l3",
+        "l4"
+      ],
+      "disabled": true,
+      "settings": {
+        "menu": "main-menu"
+      }
     }
   },
-  "order": ["header"]
+  "order": [
+    "header"
+  ]
 }
